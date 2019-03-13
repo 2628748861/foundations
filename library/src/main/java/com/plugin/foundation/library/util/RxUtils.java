@@ -2,7 +2,8 @@ package com.plugin.foundation.library.util;
 
 
 
-import com.plugin.foundation.mvp.view.MvpView;
+
+import com.plugin.foundation.library.mvp.view.MvpView;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;

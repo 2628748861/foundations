@@ -9,9 +9,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ProgressBar;
 
-import com.plugin.foundation.mvp.fragment.LazyFrament;
-import com.plugin.foundation.mvp.view.MvpView;
-import com.plugin.foundation.widght.Toasty;
+
+import com.plugin.foundation.library.mvp.fragment.LazyFrament;
+import com.plugin.foundation.library.mvp.view.MvpView;
+import com.plugin.foundation.library.widght.Toasty;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

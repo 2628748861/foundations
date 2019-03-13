@@ -1,9 +1,9 @@
 package com.plugin.foundation.library.mvp.activity;
 
 
-import com.plugin.foundation.mvp.presenter.MvpPresenter;
-import com.plugin.foundation.mvp.view.MvpView;
-import com.plugin.foundation.mvp.view.delegate.DefaultViewDelegateImp;
+import com.plugin.foundation.library.mvp.presenter.MvpPresenter;
+import com.plugin.foundation.library.mvp.view.MvpView;
+import com.plugin.foundation.library.mvp.view.delegate.DefaultViewDelegateImp;
 
 public abstract class BaseMvpActivity<Presenter extends MvpPresenter> extends MvpActivity<Presenter> {
     @Override

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.plugin.foundation.R;
+import com.plugin.foundation.library.R;
 
 
 /**

@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import com.plugin.foundation.mvp.presenter.MvpPresenter;
-import com.plugin.foundation.mvp.view.MvpView;
+import com.plugin.foundation.library.mvp.presenter.MvpPresenter;
+import com.plugin.foundation.library.mvp.view.MvpView;
 
 
 /**

@@ -1,7 +1,7 @@
 package com.plugin.foundation.library.http.response;
 
 
-import com.plugin.foundation.http.entity.BaseResponseEntity;
+import com.plugin.foundation.library.http.entity.BaseResponseEntity;
 
 /**业务层处理观察者(上层)
  * Created by cample on 2017/7/31.

@@ -7,8 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
-import com.plugin.foundation.mvp.presenter.MvpPresenter;
-import com.plugin.foundation.mvp.view.MvpView;
+import com.plugin.foundation.library.mvp.presenter.MvpPresenter;
+import com.plugin.foundation.library.mvp.view.MvpView;
 
 
 /**
