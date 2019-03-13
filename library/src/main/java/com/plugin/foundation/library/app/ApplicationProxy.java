@@ -19,6 +19,7 @@ public abstract class ApplicationProxy extends Application
         List<IApplifeCycle> applifeCycles=new ArrayList<>();
         addApplifeCycles(applifeCycles);
         manager=new AppDelegateLifeCycleProxyManger.Builder()
+                .addApplifeCycle(new DbAndImaLoaderDelegate())
                 .addApplifeCycles(applifeCycles)
                 .build();
         manager.attachBaseContext(base);
