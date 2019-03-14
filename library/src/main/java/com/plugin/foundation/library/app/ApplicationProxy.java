@@ -19,6 +19,7 @@ public abstract class ApplicationProxy extends Application
         List<IApplifeCycle> applifeCycles=new ArrayList<>();
         addApplifeCycles(applifeCycles);
         AppDelegateLifeCycleProxyManger.Builder builder=new AppDelegateLifeCycleProxyManger.Builder()
+                .addApplifeCycle(new LeakCanaryLifeCycleDelegate(this))
                 .addApplifeCycle(provideHttpConifg())
                 .addApplifeCycle(provideDatabaseConifg())
                 .addApplifeCycle(provideImageLoaderConifg())
