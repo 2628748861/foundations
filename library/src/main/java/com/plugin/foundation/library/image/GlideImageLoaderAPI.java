@@ -76,7 +76,7 @@ public class GlideImageLoaderAPI implements ImageLoaderAPI
         }
         else
         {
-            RoundedCorners roundedCorners= new RoundedCorners(radius);
+            RoundedCorners roundedCorners= new RoundedCorners(radius==0?1:radius);
             options=RequestOptions.bitmapTransform(roundedCorners);
         }
         return options;
