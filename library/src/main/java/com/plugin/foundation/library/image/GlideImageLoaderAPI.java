@@ -2,12 +2,16 @@ package com.plugin.foundation.library.image;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import java.io.File;
@@ -20,48 +24,19 @@ import java.io.File;
 public class GlideImageLoaderAPI implements ImageLoaderAPI
 {
     @Override
-    public void display(Context context, String url, ImageView imageView) {
-        Glide.with(context).load(url).into(imageView);
+    public void display(Context context, String url, int placeHolder,boolean isCircle, int radius, ImageView imageView) {
+        Glide.with(context).load(url).placeholder(placeHolder).apply(getRequestOptions(isCircle, radius)).into(imageView);
     }
 
     @Override
-    public void display(Context context, Integer resource,  ImageView imageView) {
-        Glide.with(context).load(resource).into(imageView);
+    public void display(Context context, Integer drawableResId, int placeHolder,boolean isCircle, int radius, ImageView imageView) {
+        Glide.with(context).load(drawableResId).placeholder(placeHolder).apply(getRequestOptions(isCircle, radius)).into(imageView);
     }
 
     @Override
-    public void displaynogift(Context context, String url,  ImageView imageView) {
-        Glide.with(context).asBitmap().load(url).into(imageView);
-    }
+    public void display(Context context, File file, int placeHolder, boolean isCircle, int radius, ImageView imageView) {
 
-    @Override
-    public void display(final Context context, Integer resource, final int radius, final ImageView imageView) {
-        Glide.with(context)
-                .asBitmap()
-                .load(resource)
-                .into(new BitmapImageViewTarget(imageView) {
-                    @Override
-                    protected void setResource(Bitmap resource) {
-                        RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource);
-                        circularBitmapDrawable.setCornerRadius(radius);
-                        imageView.setImageDrawable(circularBitmapDrawable);
-                    }
-                });
-    }
-
-    @Override
-    public void display(final Context context, String url,final int radius,final ImageView imageView) {
-        Glide.with(context)
-                .asBitmap()
-                .load(url)
-                .into(new BitmapImageViewTarget(imageView) {
-                    @Override
-                    protected void setResource(Bitmap resource) {
-                        RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource);
-                        circularBitmapDrawable.setCornerRadius(radius);
-                        imageView.setImageDrawable(circularBitmapDrawable);
-                    }
-                });
+        Glide.with(context).load(file).placeholder(placeHolder).apply(getRequestOptions(isCircle, radius)).into(imageView);
     }
 
     @Override
@@ -91,4 +66,20 @@ public class GlideImageLoaderAPI implements ImageLoaderAPI
         }
         return size;
     }
+
+    private RequestOptions getRequestOptions(boolean isCircle,int radius)
+    {
+        RequestOptions options;
+        if(isCircle)
+        {
+            options = RequestOptions.circleCropTransform();
+        }
+        else
+        {
+            RoundedCorners roundedCorners= new RoundedCorners(radius);
+            options=RequestOptions.bitmapTransform(roundedCorners);
+        }
+        return options;
+    }
+
 }

@@ -34,3 +34,13 @@
 #BaseResponseEntity的子类不能混淆
 -keepclasseswithmembers class * extends com.plugin.foundation.library.http.entity.BaseResponseEntity {
 <init>(...); }
+
+#Glide配置
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+# for DexGuard only
+-keepresourcexmlelements manifest/application/meta-data@value=GlideModule

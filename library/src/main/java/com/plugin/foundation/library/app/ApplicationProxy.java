@@ -18,10 +18,13 @@ public abstract class ApplicationProxy extends Application
         super.attachBaseContext(base);
         List<IApplifeCycle> applifeCycles=new ArrayList<>();
         addApplifeCycles(applifeCycles);
-        manager=new AppDelegateLifeCycleProxyManger.Builder()
-                .addApplifeCycle(new DbAndImaLoaderDelegate())
-                .addApplifeCycles(applifeCycles)
-                .build();
+        AppDelegateLifeCycleProxyManger.Builder builder=new AppDelegateLifeCycleProxyManger.Builder()
+                .addApplifeCycle(provideHttpConifg())
+                .addApplifeCycle(provideDatabaseConifg())
+                .addApplifeCycle(provideImageLoaderConifg())
+                .addApplifeCycle(providePermissionConifg())
+                .addApplifeCycles(applifeCycles);
+        manager=builder.build();
         manager.attachBaseContext(base);
     }
     @Override
@@ -53,6 +56,23 @@ public abstract class ApplicationProxy extends Application
         super.onTrimMemory(level);
         manager.onTrimMemory(level);
     }
+
+
+    protected IApplifeCycle provideHttpConifg(){
+        return new HttpDelegate("");
+    }
+    protected IApplifeCycle provideDatabaseConifg(){
+        return new DatabaseDelegate();
+    }
+    protected IApplifeCycle provideImageLoaderConifg()
+    {
+        return new ImageLoaderDelegate();
+    }
+    protected IApplifeCycle providePermissionConifg()
+    {
+        return new PermissionDelegate();
+    }
+
 
     protected abstract void addApplifeCycles(List<IApplifeCycle> applifeCycles);
 }
