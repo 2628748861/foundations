@@ -5,14 +5,14 @@ package com.plugin.foundation.library.http.entity;
  */
 public class BaseResponseEntity<T> {
     private T data;
-    private String code;
+    private int code;
     private String msg;
 
     public T getData() {
         return data;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
