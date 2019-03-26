@@ -61,9 +61,7 @@ public abstract class ApplicationProxy extends Application
     protected IApplifeCycle provideHttpConifg(){
         return new HttpDelegate("");
     }
-    protected IApplifeCycle provideDatabaseConifg(){
-        return new DatabaseDelegate();
-    }
+    protected abstract IApplifeCycle provideDatabaseConifg();
     protected IApplifeCycle provideImageLoaderConifg()
     {
         return new ImageLoaderDelegate();

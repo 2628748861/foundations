@@ -1,61 +1,83 @@
 package com.plugin.foundation.library.db;
-
-import android.content.ContentValues;
-
 import java.util.List;
 
 /**
  * Created by cample on 2018/3/21.
  */
 
-public interface IDbAPI<T>
+public interface IDbAPI
 {
+    /**获取数据库名称
+     * @return
+     */
+    String getDbName();
 
     /**添加单条数据
      * @param t
+     * @return
      */
-    void save(T t);
-    /**添加数据
+    long insert(Object t);
+    /**添加单条数据
      * @param t
      * @return
      */
-    void save(T... t);
+    long insertOrUpdate(Object t);
 
-    /**删除指定id数据
-     * @param claz
+    /**添加多条数据
+     * @param s
      */
-    void delete(Class<T> claz, long id);
+    void insertOrReplaceTx(Object... s);
 
-    /**条件删除 举例：condition====>"duration > ?"
-     * @param claz
+    /**删除单条数据
+     * @param t
      */
-    void delete(Class<T> claz, String... condition);
+    void delete(Object t);
+
+    /**删除整张表数据
+     * @param t
+     */
+    void deleteAll(Class<?> t);
 
     /**修改单条数据
-     * @param
+     * @param t
      */
-    void update(Class<T> claz, ContentValues contentValues, long id);
-
-    /**按条件修改指定类型数据
-     * @param
-     */
-    void update(Class<T> claz, ContentValues contentValues, String... condition);
+    void update(Object t);
 
 
-    /**查询指定id数据
+    /**查询主键为{id}的实体
      * @param claz
      * @param id
+     * @param <T>
+     * @return
      */
-    T find(Class<T> claz, long id);
+    <T> T loadById(Class<T> claz, Long id);
 
-    /**查询指定类型全部数据
-     * @param claz
+    /**加载整张表数据
+     * @param t
+     * @param <T>
+     * @return
      */
-    List<T> find(Class<T> claz);
+    <T> List<T> loadAll(Class<T> t);
 
-    /**按指定条件查询指定类型全部数据
-     * @param claz
-     * @param condition
+    /**加载第一条数据
+     * @param t
+     * @param <T>
+     * @return
      */
-    List<T> find(Class<T> claz, String[] columns, String... condition);
+    <T> T loadFirst(Class<T> t);
+
+    /**获取总条数
+     * @param t
+     * @return
+     */
+    long size(Class<Object> t);
+
+    /**自定义查询
+     * @param
+     * @param t
+     * @param <T>
+     * @return
+     */
+    <T> List<T> customQuery(Class<T> t, String where, String... selectionArg);
+
 }
