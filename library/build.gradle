@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-
 android {
     compileSdkVersion 28
 
@@ -33,12 +32,12 @@ dependencies {
     api 'com.squareup.retrofit2:converter-gson:2.4.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     api 'com.google.code.gson:gson:2.8.0'
-
+    api 'org.greenrobot:greendao:3.2.2'
     //glide
     api "com.github.bumptech.glide:glide:4.9.0"
 
 //    //litepal
-    api 'org.litepal.android:java:3.0.0'
+//    api 'org.litepal.android:java:3.0.0'
 
     //多baseUrl切换
     api 'me.jessyan:retrofit-url-manager:1.4.0'

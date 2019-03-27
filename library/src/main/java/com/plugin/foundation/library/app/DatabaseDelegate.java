@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 
 import com.plugin.foundation.library.db.DbProxy;
 
-import org.litepal.LitePal;
 
 public class DatabaseDelegate implements IApplifeCycle {
     Context base;
