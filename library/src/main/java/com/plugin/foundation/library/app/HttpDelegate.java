@@ -5,36 +5,19 @@ import android.content.res.Configuration;
 
 import com.plugin.foundation.library.http.HttpApiProxy;
 import com.plugin.foundation.library.http.RetrofitApi;
+import com.plugin.foundation.library.http.entity.SSLSocketClient;
 
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import okhttp3.OkHttpClient;
 
 /**
- * 网络
+ * 网络请求代理类
  */
 public class HttpDelegate implements IApplifeCycle
 {
 
     private String baseUrl;
-
-    public HttpDelegate( String baseUrl) {
-        this.baseUrl=baseUrl;
-    }
-
-    /**提供okhttpClient
-     * @param builder
-     * @return
-     */
-    protected OkHttpClient provideOkHttpClient(OkHttpClient.Builder builder)
-    {
-        if(supportMulti())
-        {
-            return RetrofitUrlManager.getInstance().with(builder).build();
-        }
-        return  builder.build();
-    }
-
-    /**是否支持多baseUrl动态切换
+    /** 是否支持多baseUrl动态切换
      *  注意:
      *  定义时:需要添加@Headers映射
      *  @Headers({"Domain-Name:domain"})
@@ -45,11 +28,28 @@ public class HttpDelegate implements IApplifeCycle
      *  如果没有手动指定baseurl,将采用默认的baseUrl作为地址
      * @return
      */
-    protected boolean supportMulti()
-    {
-        return false;
+    private boolean supportMulti;
+
+    public HttpDelegate( String baseUrl,boolean supportMulti) {
+        this.baseUrl=baseUrl;
+        this.supportMulti=supportMulti;
     }
 
+    /**提供okhttpClient
+     * @param builder
+     * @return
+     */
+    protected OkHttpClient provideOkHttpClient(OkHttpClient.Builder builder)
+    {
+        //忽略https证书验证
+        builder.sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
+                .hostnameVerifier(SSLSocketClient.getHostnameVerifier());
+        if(supportMulti)
+        {
+            return RetrofitUrlManager.getInstance().with(builder).build();
+        }
+        return builder.build();
+    }
 
     @Override
     public void attachBaseContext(Context base) {
