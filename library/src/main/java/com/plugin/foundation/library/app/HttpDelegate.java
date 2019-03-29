@@ -57,29 +57,7 @@ public class HttpDelegate implements IApplifeCycle
     }
     @Override
     public void onCreate() {
-//        /**
-//         * 如果只是单baseUrl不进行动态切换则可以这样写:
-//         * OkHttpClient okHttpClient=new OkHttpClient.Builder()
-//         *                 //.addInterceptor() 添加拦截器 等...
-//         *                 .build();
-//         * 如果需要支持多baseUrl动态切换则这样写:
-//         *  OkHttpClient okHttpClient=RetrofitUrlManager.getInstance().with(new OkHttpClient.Builder())
-//         *  //.addInterceptor() 添加拦截器 等...
-//         *  .build();
-//         * **/
-        OkHttpClient okHttpClient=provideOkHttpClient(new OkHttpClient.Builder());
-//        if(multiEnable)
-//        {
-//            okHttpClient=RetrofitUrlManager.getInstance().with(new OkHttpClient.Builder())
-//                    .build();
-//        }
-//        else
-//        {
-//            okHttpClient=new OkHttpClient.Builder().build();
-//        }
-
         HttpApiProxy.init(new RetrofitApi(baseUrl,provideOkHttpClient(new OkHttpClient.Builder())));
-
     }
 
     @Override
