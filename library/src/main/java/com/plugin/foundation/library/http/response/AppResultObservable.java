@@ -1,13 +1,11 @@
 package com.plugin.foundation.library.http.response;
-
-
-import com.plugin.foundation.library.http.entity.BaseResponseEntity;
+import com.plugin.foundation.library.http.entity.IResponse;
 
 /**业务层处理观察者(上层)
  * Created by cample on 2017/7/31.
  */
 
-public abstract class AppResultObservable<T> extends BaseResultObservable<T> {
+public abstract class AppResultObservable<T extends IResponse> extends NativeResultObservable<T> {
 
     public abstract void onSuccess(T t);
     public abstract void onErrors(String msg);
@@ -15,13 +13,11 @@ public abstract class AppResultObservable<T> extends BaseResultObservable<T> {
     @Override
     protected void onHandlerSuccess(T t) {
         //处理服务器返回响应具体业务逻辑(如:登录过期,强制互踢...等).
-        BaseResponseEntity entity=(BaseResponseEntity) t;
-        AppHttpStatusCodeEnum statusCodeEnum=AppHttpStatusCodeEnum.getEnumByCode(entity.getCode());
-        if(statusCodeEnum!=AppHttpStatusCodeEnum.SUCCESS){
-            onErrors(statusCodeEnum.getMsg());
-        }
-        else
+        if(t==null||!t.isSuccess())
         {
+            onErrors(t.message());
+        }
+        else{
             onSuccess(t);
         }
 

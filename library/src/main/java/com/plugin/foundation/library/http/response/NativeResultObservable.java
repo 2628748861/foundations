@@ -4,6 +4,7 @@ import android.net.ParseException;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonParseException;
+import com.plugin.foundation.library.http.entity.IResponse;
 
 import org.json.JSONException;
 
@@ -17,7 +18,7 @@ import retrofit2.HttpException;
  * Created by cample on 2017/7/31.
  */
 
-public abstract class BaseResultObservable<T> extends ResourceObserver<T> {
+public abstract class NativeResultObservable<T> extends ResourceObserver<T> {
     protected abstract void onHandlerSuccess(T t);
     protected abstract void onHandlerErrors(String msg);
 
