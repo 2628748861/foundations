@@ -32,7 +32,7 @@
 -dontwarn javax.annotation.**
 
 #BaseResponseEntity的子类不能混淆
--keepclasseswithmembers class * extends com.plugin.foundation.library.http.entity.BaseResponseEntity {
+-keepclasseswithmembers class * implements com.plugin.foundation.library.http.entity.IResponse {
 <init>(...); }
 
 #Glide配置
