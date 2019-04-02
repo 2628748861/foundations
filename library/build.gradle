@@ -43,7 +43,7 @@ dependencies {
     api 'com.jakewharton:butterknife:8.4.0'
 
     //占位布局
-    api 'com.github.2628748861:placeHolderLayout:1.0.0'
+    api 'com.github.2628748861:placeHolderLayout:1.0.1'
 
     //刷新布局
     api "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-7"
