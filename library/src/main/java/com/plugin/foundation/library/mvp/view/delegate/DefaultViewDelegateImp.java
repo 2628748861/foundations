@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.ProgressBar;
 
 
+import com.plugin.foundation.library.R;
 import com.plugin.foundation.library.mvp.fragment.LazyFrament;
 import com.plugin.foundation.library.mvp.view.MvpView;
 import com.plugin.foundation.library.widght.Toasty;
@@ -27,9 +28,9 @@ public class DefaultViewDelegateImp implements MvpView {
     public DefaultViewDelegateImp(Object target,View contentView) {
         ButterKnife.bind(target, contentView);
         this.mContext=target instanceof Activity?(Activity)target:((LazyFrament)target).getContext();
-        loadinglayout=(LoadingLayout) getChildA(contentView);
+        loadinglayout=(LoadingLayout) getChild(contentView);
     }
-    private View getChildA(View view) {
+    private View getChild(View view) {
         if (view instanceof ViewGroup) {
             ViewGroup vp = (ViewGroup) view;
             for (int i = 0; i < vp.getChildCount(); i++) {
@@ -39,7 +40,7 @@ public class DefaultViewDelegateImp implements MvpView {
                     return viewchild;
                 }
                 else{
-                    getChildA(viewchild);
+                    getChild(viewchild);
                 }
             }
         }
