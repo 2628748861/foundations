@@ -20,23 +20,28 @@ public class NetCacheInterceptor implements Interceptor
 
     @Override
     public Response intercept(Chain chain) {
-        Request request = chain.request();
-//        CacheControl cacheControl = new CacheControl.Builder()
-//                .maxAge(60, TimeUnit.SECONDS)
-//                .maxStale(120, TimeUnit.SECONDS).build();
-        boolean connected = NetworkUtil.isNetworkConnected(context);
-        if (!connected)
-        {
-            request = request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
+        Request.Builder builder = chain.request()
+                .newBuilder();
+        builder.cacheControl(CacheControl.FORCE_CACHE).url(chain.request().url())
+                .build();
+        if (NetworkUtil.isNetworkConnected(context)) {
+            int maxAge = 60; // read from cache for 60 s
+            builder
+                    .removeHeader("Pragma")
+                    .addHeader("Cache-Control", "public, max-age=" + maxAge)
+                    .build();
+        } else {
+            int maxStale = 60 * 60 * 24 * 14; // tolerate 2-weeks stale
+            builder
+                    .removeHeader("Pragma")
+                    .addHeader("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+                    .build();
         }
-        Response response = null;
         try {
-            response = chain.proceed(request);
+            return chain.proceed(builder.build());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        return response;
+        return null;
     }
 }

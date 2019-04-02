@@ -14,6 +14,7 @@ import java.io.File;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
+import okhttp3.internal.cache.CacheInterceptor;
 
 /**
  * 网络请求代理类
