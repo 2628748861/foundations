@@ -6,6 +6,7 @@ import android.os.Environment;
 
 import com.plugin.foundation.library.http.HttpApiProxy;
 import com.plugin.foundation.library.http.RetrofitApi;
+import com.plugin.foundation.library.http.cache.NetCacheInterceptor;
 import com.plugin.foundation.library.http.entity.SSLSocketClient;
 
 import java.io.File;
@@ -34,6 +35,9 @@ public class HttpDelegate implements IApplifeCycle
      */
     private boolean supportMulti;
 
+
+
+
     public HttpDelegate( String baseUrl,boolean supportMulti) {
         this.baseUrl=baseUrl;
         this.supportMulti=supportMulti;
@@ -53,6 +57,7 @@ public class HttpDelegate implements IApplifeCycle
         // 缓存大小
         int cacheSize = 10 * 1024 * 1024;
         builder.cache(new Cache(file,cacheSize));
+        builder.addInterceptor(new NetCacheInterceptor());
         if(supportMulti)
         {
             return RetrofitUrlManager.getInstance().with(builder).build();
