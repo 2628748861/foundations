@@ -20,6 +20,7 @@ import okhttp3.OkHttpClient;
  */
 public class HttpDelegate implements IApplifeCycle
 {
+    private Context context;
 
     private String baseUrl;
     /** 是否支持多baseUrl动态切换
@@ -38,7 +39,8 @@ public class HttpDelegate implements IApplifeCycle
 
 
 
-    public HttpDelegate( String baseUrl,boolean supportMulti) {
+    public HttpDelegate(Context context, String baseUrl,boolean supportMulti) {
+        this.context=context;
         this.baseUrl=baseUrl;
         this.supportMulti=supportMulti;
     }
@@ -57,7 +59,7 @@ public class HttpDelegate implements IApplifeCycle
         // 缓存大小
         int cacheSize = 10 * 1024 * 1024;
         builder.cache(new Cache(file,cacheSize));
-        builder.addInterceptor(new NetCacheInterceptor());
+        builder.addInterceptor(new NetCacheInterceptor(context));
         if(supportMulti)
         {
             return RetrofitUrlManager.getInstance().with(builder).build();
