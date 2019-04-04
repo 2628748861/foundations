@@ -3,18 +3,13 @@ package com.plugin.foundation.library.app;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Environment;
-
 import com.plugin.foundation.library.http.HttpApiProxy;
 import com.plugin.foundation.library.http.RetrofitApi;
-import com.plugin.foundation.library.http.cache.NetCacheInterceptor;
 import com.plugin.foundation.library.http.entity.SSLSocketClient;
-
 import java.io.File;
-
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
-import okhttp3.internal.cache.CacheInterceptor;
 
 /**
  * 网络请求代理类
@@ -55,12 +50,6 @@ public class HttpDelegate implements IApplifeCycle
         //忽略https证书验证
         builder.sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
                 .hostnameVerifier(SSLSocketClient.getHostnameVerifier());
-        // 缓存目录
-        File file = new File(Environment.getExternalStorageDirectory(), "http_cache");
-        // 缓存大小
-        int cacheSize = 10 * 1024 * 1024;
-        builder.cache(new Cache(file,cacheSize));
-        builder.addInterceptor(new NetCacheInterceptor(context));
         if(supportMulti)
         {
             return RetrofitUrlManager.getInstance().with(builder).build();
