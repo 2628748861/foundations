@@ -11,9 +11,10 @@ import com.plugin.foundation.library.db.IDbAPI;
  */
 public class DatabaseDelegate implements IApplifeCycle {
 
+    IDbAPI iDbAPI;
     public DatabaseDelegate(IDbAPI dbProxy)
     {
-        DbProxy.init(dbProxy);
+        this.iDbAPI=dbProxy;
     }
 
     @Override
@@ -22,6 +23,7 @@ public class DatabaseDelegate implements IApplifeCycle {
 
     @Override
     public void onCreate() {
+        DbProxy.init(iDbAPI);
     }
 
     @Override
