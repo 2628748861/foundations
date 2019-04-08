@@ -15,8 +15,8 @@ import java.lang.reflect.Constructor;
 public class GreenDaoDelegate implements IApplifeCycle {
 
     private Application application;
-    Class<IDbAPI> apiClass;
-    public GreenDaoDelegate(Application application, Class<IDbAPI> apiClass)
+    Class<? extends IDbAPI> apiClass;
+    public GreenDaoDelegate(Application application, Class<? extends IDbAPI> apiClass)
     {
         this.apiClass=apiClass;
         this.application=application;
