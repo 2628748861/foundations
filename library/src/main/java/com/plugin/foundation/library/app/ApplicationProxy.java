@@ -20,8 +20,8 @@ public abstract class ApplicationProxy extends Application
         addApplifeCycles(applifeCycles);
         AppDelegateLifeCycleProxyManger.Builder builder=new AppDelegateLifeCycleProxyManger.Builder()
                 .addApplifeCycle(provideHttpConifg())
-                .addApplifeCycle(provideDatabaseConifg())
                 .addApplifeCycle(provideImageLoaderConifg())
+                .addApplifeCycle(provideDatabaseConifg())
                 .addApplifeCycles(applifeCycles);
         manager=builder.build();
         manager.attachBaseContext(base);
@@ -58,12 +58,12 @@ public abstract class ApplicationProxy extends Application
 
 
     protected IApplifeCycle provideHttpConifg(){
-        return new HttpDelegate(this,"",false);
+        return new OkhttpDelegate(this,"",false);
     }
     protected abstract IApplifeCycle provideDatabaseConifg();
     protected IApplifeCycle provideImageLoaderConifg()
     {
-        return new ImageLoaderDelegate();
+        return new GlideDelegate();
     }
 
 

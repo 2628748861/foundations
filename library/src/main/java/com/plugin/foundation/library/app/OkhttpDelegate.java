@@ -14,7 +14,7 @@ import okhttp3.OkHttpClient;
 /**
  * 网络请求代理类
  */
-public class HttpDelegate implements IApplifeCycle
+public class OkhttpDelegate implements IApplifeCycle
 {
     private Context context;
 
@@ -35,7 +35,7 @@ public class HttpDelegate implements IApplifeCycle
 
 
 
-    public HttpDelegate(Context context, String baseUrl,boolean supportMulti) {
+    public OkhttpDelegate(Context context, String baseUrl, boolean supportMulti) {
         this.context=context;
         this.baseUrl=baseUrl;
         this.supportMulti=supportMulti;

@@ -3,27 +3,19 @@ package com.plugin.foundation.library.app;
 import android.content.Context;
 import android.content.res.Configuration;
 
-import com.plugin.foundation.library.db.DbProxy;
-import com.plugin.foundation.library.db.IDbAPI;
+import com.plugin.foundation.library.image.GlideImageLoaderAPI;
+import com.plugin.foundation.library.image.ImageLoaderProxy;
 
-/**
- *
- */
-public class DatabaseDelegate implements IApplifeCycle {
-
-    IDbAPI iDbAPI;
-    public DatabaseDelegate(IDbAPI dbProxy)
-    {
-        this.iDbAPI=dbProxy;
-    }
-
+public class GlideDelegate implements IApplifeCycle {
+    Context base;
     @Override
     public void attachBaseContext(Context base) {
+        this.base=base;
     }
 
     @Override
     public void onCreate() {
-        DbProxy.init(iDbAPI);
+        ImageLoaderProxy.init(new GlideImageLoaderAPI());
     }
 
     @Override
