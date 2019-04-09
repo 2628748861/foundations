@@ -1,5 +1,6 @@
 package com.plugin.foundation;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 import com.plugin.foundation.library.app.GreenDaoDelegate;
 import com.plugin.foundation.library.db.IDbAPI;
 import com.plugin.foundation.library.mvp.activity.BaseMvpActivity;
+import com.plugin.foundation.library.mvp.activity.WebActivity;
 import com.plugin.foundation.library.mvp.presenter.MvpPresenter;
 
 import java.util.List;
@@ -23,7 +25,12 @@ public class MainActivity extends BaseMvpActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new GreenDaoDelegate(getApplication(),MyApi.class);
+        Intent intent=new Intent(mContext,WebActivity.class);
+        Bundle bundle=new Bundle();
+        bundle.putString("url","http://webcase.51hitech.com/source/cobuhc9ad7x177hp/?from=singlemessage");
+        intent.putExtras(bundle);
+        startActivity(intent);
+
     }
 
     @Override
@@ -34,68 +41,5 @@ public class MainActivity extends BaseMvpActivity {
     @Override
     public MvpPresenter createPresenter() {
         return null;
-    }
-    class MyApi implements IDbAPI
-    {
-
-        @Override
-        public String getDbName() {
-            return null;
-        }
-
-        @Override
-        public long insert(Object t) {
-            return 0;
-        }
-
-        @Override
-        public long insertOrUpdate(Object t) {
-            return 0;
-        }
-
-        @Override
-        public void insertOrReplaceTx(Object... s) {
-
-        }
-
-        @Override
-        public void delete(Object t) {
-
-        }
-
-        @Override
-        public void deleteAll(Class<?> t) {
-
-        }
-
-        @Override
-        public void update(Object t) {
-
-        }
-
-        @Override
-        public <T> T loadById(Class<T> claz, Long id) {
-            return null;
-        }
-
-        @Override
-        public <T> List<T> loadAll(Class<T> t) {
-            return null;
-        }
-
-        @Override
-        public <T> T loadFirst(Class<T> t) {
-            return null;
-        }
-
-        @Override
-        public long size(Class<Object> t) {
-            return 0;
-        }
-
-        @Override
-        public <T> List<T> customQuery(Class<T> t, String where, String... selectionArg) {
-            return null;
-        }
     }
 }
