@@ -3,18 +3,20 @@ package com.plugin.foundation;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
+import com.just.agentweb.LogUtils;
 import com.plugin.foundation.library.app.GreenDaoDelegate;
 import com.plugin.foundation.library.db.IDbAPI;
 import com.plugin.foundation.library.mvp.activity.BaseMvpActivity;
 import com.plugin.foundation.library.mvp.activity.WebActivity;
 import com.plugin.foundation.library.mvp.presenter.MvpPresenter;
+import com.plugin.foundation.library.util.SdcardUtils;
 
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseMvpActivity {
 
@@ -30,6 +32,8 @@ public class MainActivity extends BaseMvpActivity {
         bundle.putString("url","http://webcase.51hitech.com/source/cobuhc9ad7x177hp/?from=singlemessage");
         intent.putExtras(bundle);
         startActivity(intent);
+
+        Log.e("TAG", SdcardUtils.getSDFreeSize()+"");
 
     }
 
