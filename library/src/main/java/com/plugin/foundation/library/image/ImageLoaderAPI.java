@@ -30,7 +30,6 @@ public interface ImageLoaderAPI {
      */
     void display(Context context, File file, int placeHolder, boolean isCircle,int radius, ImageView imageView);
 
-
     /**获取缓存大小
      * @param context
      * @return

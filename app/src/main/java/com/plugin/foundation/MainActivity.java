@@ -1,20 +1,20 @@
 package com.plugin.foundation;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.just.agentweb.LogUtils;
-import com.plugin.foundation.library.app.GreenDaoDelegate;
-import com.plugin.foundation.library.db.IDbAPI;
+import com.plugin.foundation.library.downloader.DownLoadListener;
+import com.plugin.foundation.library.downloader.DownloadProxy;
 import com.plugin.foundation.library.mvp.activity.BaseMvpActivity;
 import com.plugin.foundation.library.mvp.activity.WebActivity;
 import com.plugin.foundation.library.mvp.presenter.MvpPresenter;
 import com.plugin.foundation.library.util.SdcardUtils;
-
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -34,6 +34,7 @@ public class MainActivity extends BaseMvpActivity {
         startActivity(intent);
 
         Log.e("TAG", SdcardUtils.getSDFreeSize()+"");
+
 
     }
 

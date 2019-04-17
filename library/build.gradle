@@ -53,4 +53,6 @@ dependencies {
     api 'com.just.agentweb:agentweb:4.0.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 
+    api 'com.liulishuo.filedownloader:library:1.7.6'
+
 }
