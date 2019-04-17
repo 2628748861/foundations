@@ -1,5 +1,7 @@
 package com.plugin.foundation.library.downloader;
 
+import android.app.Application;
+
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadListener;
 import com.liulishuo.filedownloader.FileDownloader;
@@ -7,6 +9,11 @@ import com.liulishuo.filedownloader.FileDownloader;
 import java.io.File;
 
 public class FileDownLoaderImp implements IDownLoad {
+
+    public FileDownLoaderImp(Application application)
+    {
+        FileDownloader.setupOnApplicationOnCreate(application);
+    }
     @Override
     public void downloadFile(String url,File saveFile,final DownLoadListener listener) {
         FileDownloader.getImpl().create(url)
