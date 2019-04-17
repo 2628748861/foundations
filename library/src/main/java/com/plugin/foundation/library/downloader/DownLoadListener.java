@@ -20,7 +20,8 @@ public interface DownLoadListener
     void onComplite(String url, File file);
 
     /**下载失败
+     * * @param url 下载的url
      * @param e
      */
-    void onFailed(Throwable e);
+    void onFailed(String url,Throwable e);
 }

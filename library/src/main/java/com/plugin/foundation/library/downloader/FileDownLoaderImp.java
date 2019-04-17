@@ -43,7 +43,7 @@ public class FileDownLoaderImp implements IDownLoad {
                     @Override
                     protected void error(BaseDownloadTask task, Throwable e) {
                         if(listener!=null)
-                            listener.onFailed(e);
+                            listener.onFailed(task.getUrl(),e);
                     }
 
                     @Override
