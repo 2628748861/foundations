@@ -67,4 +67,9 @@ public class DiskLrucaheImp implements IDiskCache {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public File getCacheDirectory() {
+        return saveDirectory;
+    }
 }

@@ -24,4 +24,9 @@ public interface IDiskCache {
      * @param inputStream 要存储的输入流
      */
     void set(String key,InputStream inputStream);
+
+    /**获取缓存路径
+     * @return
+     */
+    File getCacheDirectory();
 }

@@ -8,9 +8,8 @@ public class Md5Util {
         String cacheKey;
         try {
             final MessageDigest mDigest = MessageDigest.getInstance("MD5");
-            mDigest.update(key.getBytes());
-            cacheKey = bytesToHexString(mDigest.digest());
-        } catch (NoSuchAlgorithmException e) {
+            cacheKey = bytesToHexString(mDigest.digest(key.getBytes("UTF-8")));
+        } catch (Exception e) {
             cacheKey = String.valueOf(key.hashCode());
         }
         return cacheKey;
