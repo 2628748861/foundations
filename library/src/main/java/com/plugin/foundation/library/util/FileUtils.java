@@ -7,8 +7,10 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -33,6 +35,28 @@ public final class FileUtils {
     }
 
     private static final String LINE_SEP = System.getProperty("line.separator");
+
+
+    public static void copyStream(InputStream inputStream,OutputStream outputStream)
+    {
+        if(inputStream==null||outputStream==null)return;
+        try
+        {
+            byte[] b=new byte[1024];
+            int len=0;
+            while ((len=inputStream.read(b))!=-1)
+            {
+                outputStream.write(b,0,len);
+            }
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+            CloseUtils.closeIO(outputStream);
+            CloseUtils.closeIO(inputStream);
+        }
+    }
 
     /**
      * Return the file by path.

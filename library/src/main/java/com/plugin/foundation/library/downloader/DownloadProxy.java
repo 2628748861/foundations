@@ -1,4 +1,6 @@
 package com.plugin.foundation.library.downloader;
+import com.plugin.foundation.library.diskcache.IDiskCache;
+
 import java.io.File;
 
 
@@ -29,4 +31,13 @@ public final class DownloadProxy implements IDownLoad
         iDownLoad.downloadFile(url,saveFile,listener);
     }
 
+    @Override
+    public void downloadFile(String url,  IDiskCache diskCache, DownLoadListener listener) {
+        iDownLoad.downloadFile(url, diskCache, listener);
+    }
+
+    @Override
+    public boolean isDownLoading(String url) {
+        return iDownLoad.isDownLoading(url);
+    }
 }

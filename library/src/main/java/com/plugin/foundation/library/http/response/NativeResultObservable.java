@@ -8,6 +8,7 @@ import com.plugin.foundation.library.http.entity.IResponse;
 
 import org.json.JSONException;
 
+import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
@@ -41,6 +42,11 @@ public abstract class NativeResultObservable<T> extends ResourceObserver<T> {
             msg = convertStatusCode(httpException);
         } else if (error instanceof JsonParseException || error instanceof ParseException || error instanceof JSONException || error instanceof JsonIOException) {
             msg = "数据解析错误";
+        }
+        else if (error instanceof ConnectException) {
+            msg = "连接服务器失败";
+        }else if (error instanceof JSONException) {
+            msg = "json转换错误";
         }
         onHandlerErrors(msg);
     }
