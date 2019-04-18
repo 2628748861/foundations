@@ -25,7 +25,7 @@ public class DiskLrucaheImp implements IDiskCache {
         }
     }
     @Override
-    public File get(String key) {
+    public synchronized File get(String key) {
         try {
             key=Md5Util.hashKeyForDisk(key);
             DiskLruCache.Snapshot snapshot=diskLruCache.get(key);
@@ -42,7 +42,7 @@ public class DiskLrucaheImp implements IDiskCache {
 
 
     @Override
-    public void set(String key, File source) {
+    public synchronized void set(String key, File source) {
         try {
             if(source==null||!source.exists())return;
             key=Md5Util.hashKeyForDisk(key);
@@ -53,7 +53,7 @@ public class DiskLrucaheImp implements IDiskCache {
     }
 
     @Override
-    public void set(String key, InputStream inputStream) {
+    public synchronized void set(String key, InputStream inputStream) {
         try {
             key=Md5Util.hashKeyForDisk(key);
             DiskLruCache.Editor editor= diskLruCache.edit(key);

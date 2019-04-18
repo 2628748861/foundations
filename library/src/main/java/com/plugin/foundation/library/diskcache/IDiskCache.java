@@ -17,7 +17,7 @@ public interface IDiskCache {
      * @param key 文件存储时对应的key
      * @param source 要存储的文件
      */
-    void set(String key,File source);
+    void  set(String key,File source);
 
     /**存储文件(针对输入流)
      * @param key 文件存储时对应的key
