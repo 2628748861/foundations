@@ -40,6 +40,15 @@ public class FileDownLoaderImp implements IDownLoad {
             }
 
             @Override
+            protected void started(BaseDownloadTask task) {
+                super.started(task);
+                if(!isDownLoading(task.getUrl()))
+                {
+                    tasks.add(FileDownloader.getImpl().create(task.getUrl()).setPath(task.getPath()));
+                }
+            }
+
+            @Override
             protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
                 if(listener!=null)
                     listener.onProgress(task.getUrl(),soFarBytes,totalBytes);
@@ -77,6 +86,7 @@ public class FileDownLoaderImp implements IDownLoad {
         });
         queueSet.setAutoRetryTimes(1);
         queueSet.downloadTogether(tasks);
+        queueSet.start();
     }
 
     @Override
@@ -88,6 +98,16 @@ public class FileDownLoaderImp implements IDownLoad {
         FileDownloadQueueSet queueSet = new FileDownloadQueueSet(new FileDownloadListener() {
             @Override
             protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+
+            }
+
+            @Override
+            protected void started(BaseDownloadTask task) {
+                super.started(task);
+                if(!isDownLoading(task.getUrl()))
+                {
+                    tasks.add(FileDownloader.getImpl().create(task.getUrl()).setPath(task.getPath()));
+                }
             }
 
             @Override
@@ -128,6 +148,7 @@ public class FileDownLoaderImp implements IDownLoad {
         });
         queueSet.setAutoRetryTimes(1);
         queueSet.downloadTogether(tasks);
+        queueSet.start();
 
     }
 
