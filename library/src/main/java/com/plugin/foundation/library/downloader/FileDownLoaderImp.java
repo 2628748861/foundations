@@ -48,7 +48,11 @@ public class FileDownLoaderImp implements IDownLoad {
             @Override
             protected void completed(BaseDownloadTask task) {
                 if(listener!=null)
+                {
+                    tasks.remove(task.getUrl());
                     listener.onComplite(task.getUrl(),new File(task.getPath()));
+                }
+
             }
 
             @Override
@@ -59,7 +63,11 @@ public class FileDownLoaderImp implements IDownLoad {
             @Override
             protected void error(BaseDownloadTask task, Throwable e) {
                 if(listener!=null)
+                {
+                    tasks.remove(task.getUrl());
                     listener.onFailed(task.getUrl(),e);
+                }
+
             }
 
             @Override
@@ -80,7 +88,6 @@ public class FileDownLoaderImp implements IDownLoad {
         FileDownloadQueueSet queueSet = new FileDownloadQueueSet(new FileDownloadListener() {
             @Override
             protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-
             }
 
             @Override
@@ -93,7 +100,11 @@ public class FileDownLoaderImp implements IDownLoad {
             protected void completed(BaseDownloadTask task) {
                 diskCache.set(task.getUrl(),new File(task.getPath()));
                 if(listener!=null)
+                {
+                    tasks.remove(task.getUrl());
                     listener.onComplite(task.getUrl(),new File(task.getPath()));
+                }
+
             }
 
             @Override
@@ -104,7 +115,10 @@ public class FileDownLoaderImp implements IDownLoad {
             @Override
             protected void error(BaseDownloadTask task, Throwable e) {
                 if(listener!=null)
+                {
+                    tasks.remove(task.getUrl());
                     listener.onFailed(task.getUrl(),e);
+                }
             }
 
             @Override
