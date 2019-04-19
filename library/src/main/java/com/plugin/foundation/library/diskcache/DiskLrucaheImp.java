@@ -46,7 +46,6 @@ public class DiskLrucaheImp implements IDiskCache {
         try {
             if(source==null||!source.exists())return;
             set(key, new FileInputStream(source));
-            source.delete();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

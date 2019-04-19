@@ -14,6 +14,17 @@ import java.util.UUID;
 public class FileDownLoaderImp implements IDownLoad {
 
     private List<BaseDownloadTask> tasks = new ArrayList<>();
+    /**
+     * 文件下载的临时目录(每次创建时清空)
+     */
+    private File tempDirectory;
+    public FileDownLoaderImp()
+    {
+        tempDirectory=new File(Environment.getExternalStorageDirectory(),"/temp");
+        if(tempDirectory.exists())
+            tempDirectory.delete();
+    }
+
 
     @Override
     public boolean isDownLoading(String url) {
@@ -91,7 +102,12 @@ public class FileDownLoaderImp implements IDownLoad {
 
     @Override
     public void downloadFile(final String url,final IDiskCache diskCache,final DownLoadListener listener) {
-        final File tempFile=new File(Environment.getExternalStorageDirectory(),UUID.randomUUID().toString()+".temp");
+
+        if(!tempDirectory.exists())
+        {
+            tempDirectory.mkdirs();
+        }
+        final File tempFile=new File(tempDirectory,UUID.randomUUID().toString()+".temp");
         if(isDownLoading(url))
             return;
         tasks.add(FileDownloader.getImpl().create(url).setPath(tempFile.getPath()));
@@ -118,12 +134,19 @@ public class FileDownLoaderImp implements IDownLoad {
 
             @Override
             protected void completed(BaseDownloadTask task) {
-                diskCache.set(task.getUrl(),new File(task.getPath()));
+                File tempFile=new File(task.getPath());
+                diskCache.set(task.getUrl(),tempFile);
+                tasks.remove(task.getUrl());
+                if(tempFile.exists())
+                {
+                    tempFile.delete();
+                }
+
                 if(listener!=null)
                 {
-                    tasks.remove(task.getUrl());
                     listener.onComplite(task.getUrl(),new File(task.getPath()));
                 }
+
 
             }
 
@@ -134,9 +157,14 @@ public class FileDownLoaderImp implements IDownLoad {
 
             @Override
             protected void error(BaseDownloadTask task, Throwable e) {
+                File tempFile=new File(task.getPath());
+                tasks.remove(task.getUrl());
+                if(tempFile.exists())
+                {
+                    tempFile.delete();
+                }
                 if(listener!=null)
                 {
-                    tasks.remove(task.getUrl());
                     listener.onFailed(task.getUrl(),e);
                 }
             }
