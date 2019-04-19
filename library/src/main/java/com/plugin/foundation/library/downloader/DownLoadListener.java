@@ -11,7 +11,7 @@ public interface DownLoadListener
      * @param soFarBytes
      * @param totalBytes
      */
-    void onProgress(int soFarBytes, int totalBytes);
+    void onProgress(String url,int soFarBytes, int totalBytes);
 
     /**下载完成
      * @param url 下载的url

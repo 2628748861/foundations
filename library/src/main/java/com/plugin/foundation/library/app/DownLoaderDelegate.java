@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 
+import com.liulishuo.filedownloader.FileDownloader;
 import com.plugin.foundation.library.downloader.DownloadProxy;
 import com.plugin.foundation.library.downloader.FileDownLoaderImp;
 
@@ -26,7 +27,8 @@ public class DownLoaderDelegate implements IApplifeCycle
 
     @Override
     public void onCreate() {
-        DownloadProxy.init(new FileDownLoaderImp(application));
+        FileDownloader.setupOnApplicationOnCreate(application);
+        DownloadProxy.init(new FileDownLoaderImp());
     }
 
     @Override
