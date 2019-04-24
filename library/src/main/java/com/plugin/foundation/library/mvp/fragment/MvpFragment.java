@@ -25,8 +25,6 @@ public abstract class MvpFragment<Presenter extends MvpPresenter> extends LazyFr
         if(applyContent()!=0) {
             setContentView(applyContent());
         }
-        //设置View代理实现 [用户自由设置]
-        viewDelegate=applyViewDelegate();
         //设置Presenter [用户自由设置]
         p=createPresenter();
     }
@@ -48,6 +46,14 @@ public abstract class MvpFragment<Presenter extends MvpPresenter> extends LazyFr
         viewDelegate=null;
         mContext=null;
     }
+
+    @Override
+    protected void onResumeLazy() {
+        super.onResumeLazy();
+        //设置View代理实现 [用户自由设置]
+        viewDelegate=applyViewDelegate();
+    }
+
     @Override
     public void showTip( String msg) {
         if(check())return;

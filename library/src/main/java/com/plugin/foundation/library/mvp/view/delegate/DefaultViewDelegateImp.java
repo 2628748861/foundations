@@ -26,7 +26,10 @@ public class DefaultViewDelegateImp implements MvpView {
     private LoadingLayout loadinglayout;
 
     public DefaultViewDelegateImp(Object target,View contentView) {
-        ButterKnife.bind(target, contentView);
+        if(unbinder==null)
+        {
+            unbinder=ButterKnife.bind(target, contentView);
+        }
         this.mContext=target instanceof Activity?(Activity)target:((LazyFrament)target).getContext();
         loadinglayout=(LoadingLayout) getChild(contentView);
     }
@@ -115,6 +118,7 @@ public class DefaultViewDelegateImp implements MvpView {
     }
 
     private boolean isNull(){
+
         return loadinglayout==null;
     }
 }

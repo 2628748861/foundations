@@ -144,7 +144,6 @@ public abstract class LazyFrament extends BaseFragment {
             layout.removeAllViews();
             View view = getLayoutInflater().inflate(layoutResID, layout, false);
             layout.addView(view);
-            super.setContentView(layout);
         } else {
             super.setContentView(layoutResID);
         }
@@ -155,7 +154,6 @@ public abstract class LazyFrament extends BaseFragment {
         if (isLazyLoad && getContentView() != null && getContentView().getParent() != null) {
             layout.removeAllViews();
             layout.addView(view);
-            super.setContentView(layout);
         } else {
             super.setContentView(view);
         }
