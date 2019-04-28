@@ -4,42 +4,26 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ProgressBar;
 
 
-import com.plugin.foundation.library.R;
-import com.plugin.foundation.library.mvp.activity.MvpActivity;
-import com.plugin.foundation.library.mvp.fragment.LazyFrament;
-import com.plugin.foundation.library.mvp.fragment.MvpFragment;
 import com.plugin.foundation.library.mvp.view.MvpView;
 import com.plugin.foundation.library.widght.Toasty;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import ezy.ui.layout.LoadingLayout;
 
 public class DefaultViewDelegateImp implements MvpView {
     protected Context mContext;
-    private Unbinder unbinder;
     private AlertDialog alertDialog;
-//    private LoadingLayout loadinglayout;
-    private Object target;
+    private LoadingLayout loadinglayout;
 
     public DefaultViewDelegateImp(Object target,View contentView) {
-        unbinder=ButterKnife.bind(target, contentView);
-        this.mContext=target instanceof Activity?(Activity)target:((LazyFrament)target).getContext();
-//        loadinglayout=(LoadingLayout) getChild(contentView);
-        this.target=target;
+        this.mContext=target instanceof Activity?(Activity)target:((Fragment)target).getContext();
+        loadinglayout=(LoadingLayout) getChild(contentView);
     }
-
-    protected View getContentView(Object target)
-    {
-        return target instanceof MvpActivity ?((MvpActivity)target).getContentView():((MvpFragment)target).getContentView();
-    }
-
     private View getChild(View view) {
         if (view instanceof ViewGroup) {
             ViewGroup vp = (ViewGroup) view;
@@ -60,35 +44,31 @@ public class DefaultViewDelegateImp implements MvpView {
 
     @Override
     public void onDetach() {
-        if(unbinder!=null)
-        {
-            unbinder.unbind();
-            unbinder=null;
-        }
+        loadinglayout=null;
     }
 
     @Override
     public void showLoading() {
         if(isNull())return;
-        getLoadinglayout().showLoading();
+        loadinglayout.showLoading();
     }
 
     @Override
     public void showError() {
         if(isNull())return;
-        getLoadinglayout().showError();
+        loadinglayout.showError();
     }
 
     @Override
     public void showEmpty() {
         if(isNull())return;
-        getLoadinglayout().showEmpty();
+        loadinglayout.showEmpty();
     }
 
     @Override
     public void showContent() {
         if(isNull())return;
-        getLoadinglayout().showContent();
+        loadinglayout.showContent();
     }
 
     @Override
@@ -124,13 +104,7 @@ public class DefaultViewDelegateImp implements MvpView {
     }
 
     private boolean isNull(){
-        return target==null;
+        return loadinglayout==null;
     }
-
-    protected LoadingLayout getLoadinglayout()
-    {
-        return (LoadingLayout) getChild(getContentView(target));
-    }
-
 }
 

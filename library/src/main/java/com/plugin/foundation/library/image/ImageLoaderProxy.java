@@ -3,6 +3,8 @@ package com.plugin.foundation.library.image;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.plugin.foundation.library.image.shape.CornerShape;
+
 import java.io.File;
 
 /**
@@ -28,18 +30,18 @@ public final class ImageLoaderProxy implements ImageLoaderAPI {
 
 
     @Override
-    public void display(Context context, String url, int placeHolder, boolean isCircle, int radius, ImageView imageView) {
-        iImageLoaderAPI.display(context, url, placeHolder, isCircle, radius, imageView);
+    public void display(Context context, String url, int placeHolder, CornerShape shape, ImageView imageView) {
+        iImageLoaderAPI.display(context, url, placeHolder, shape, imageView);
     }
 
     @Override
-    public void display(Context context, Integer drawableResId, int placeHolder, boolean isCircle, int radius, ImageView imageView) {
-        iImageLoaderAPI.display(context, drawableResId, placeHolder, isCircle, radius, imageView);
+    public void display(Context context, Integer drawableResId, int placeHolder, CornerShape shape, ImageView imageView) {
+        iImageLoaderAPI.display(context, drawableResId, placeHolder, shape, imageView);
     }
 
     @Override
-    public void display(Context context, File file, int placeHolder, boolean isCircle, int radius, ImageView imageView) {
-        iImageLoaderAPI.display(context, file, placeHolder, isCircle, radius, imageView);
+    public void display(Context context, File file, int placeHolder, CornerShape shape, ImageView imageView) {
+        iImageLoaderAPI.display(context, file, placeHolder, shape, imageView);
     }
 
     @Override

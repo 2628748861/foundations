@@ -11,6 +11,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+    dataBinding{
+        enabled=true
+    }
 
     buildTypes {
         release {
@@ -56,5 +59,6 @@ dependencies {
     api 'com.liulishuo.filedownloader:library:1.7.6'
 
     api 'com.jakewharton:disklrucache:2.0.2'
+
 
 }

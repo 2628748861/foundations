@@ -1,7 +1,8 @@
-package com.plugin.foundation.library.adapter.recyclerview;
+package com.plugin.foundation.library.adapter.recyclerview.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -11,12 +12,13 @@ import java.util.List;
  * Created by cample on 2017/7/29.
  */
 
-public abstract class BaseRecyclerAdapter<T>  extends RecyclerView.Adapter<RecyclerViewHolder> implements View.OnClickListener, View.OnLongClickListener
+public abstract class BaseRecyclerAdapter<T,V extends RecyclerView.ViewHolder>  extends RecyclerView.Adapter<V> implements View.OnClickListener, View.OnLongClickListener
 {
 
     protected Context context;
     private int layoutId;
     private List<T> mDatas;
+    private LayoutInflater inflater;
     protected OnItemClickListener onItemClickListener;
     private OnItemLongClickListener longClickListener;
 
@@ -38,18 +40,19 @@ public abstract class BaseRecyclerAdapter<T>  extends RecyclerView.Adapter<Recyc
         this.layoutId = layoutId;
         this.mDatas = mDatas;
         this.context=context;
+        this.inflater=LayoutInflater.from(context);
     }
     @Override
-    public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RecyclerViewHolder viewHolder= RecyclerViewHolder.get(context,parent,layoutId);
-        viewHolder.getItemView().setOnClickListener(this);
-        viewHolder.getItemView().setOnLongClickListener(this);
-        return viewHolder;
+    public V onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view=inflater.inflate(layoutId,parent,false);
+        view.setOnClickListener(this);
+        view.setOnLongClickListener(this);
+        return createViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewHolder holder, final int position) {
-        holder.getItemView().setTag(position);
+    public void onBindViewHolder(V holder, final int position) {
+        holder.itemView.setTag(position);
         convert(holder,position,getItem(position));
     }
 
@@ -57,7 +60,8 @@ public abstract class BaseRecyclerAdapter<T>  extends RecyclerView.Adapter<Recyc
     public int getItemCount() {
         return mDatas.size();
     }
-    public abstract void convert(RecyclerViewHolder holder, int position, T item);
+    public abstract V createViewHolder(View view);
+    public abstract void convert(V v, int position, T item);
     public int getItemViewCount()
     {
         return 1;

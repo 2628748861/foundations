@@ -3,32 +3,34 @@ package com.plugin.foundation.library.image;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.plugin.foundation.library.image.shape.CornerShape;
+
 import java.io.File;
 
 /**
  * Created by cample on 2018/3/21.
  */
 
-public interface ImageLoaderAPI {
+public interface ImageLoaderAPI<T> {
 
     /**加载网络图片
      * @param url
      * @param imageView
      */
-    void display(Context context, String url,int placeHolder,boolean isCircle,int radius, ImageView imageView);
+    void display(Context context, String url, int placeHolder, CornerShape<T> shape, ImageView imageView);
 
     /**加载本地资源图片
      * @param context
      * @param drawableResId
      * @param imageView
      */
-    void display(Context context, Integer drawableResId,int placeHolder,boolean isCircle,int radius, ImageView imageView);
+    void display(Context context, Integer drawableResId,int placeHolder,CornerShape<T> shape, ImageView imageView);
 
     /**加载本地图片
      * @param file
      * @param imageView
      */
-    void display(Context context, File file, int placeHolder, boolean isCircle,int radius, ImageView imageView);
+    void display(Context context, File file, int placeHolder, CornerShape<T> shape, ImageView imageView);
 
     /**获取缓存大小
      * @param context

@@ -3,6 +3,7 @@ package com.plugin.foundation.library.mvp.fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
 
 import com.plugin.foundation.library.mvp.presenter.MvpPresenter;
 import com.plugin.foundation.library.mvp.view.MvpView;
@@ -12,34 +13,26 @@ import com.plugin.foundation.library.mvp.view.MvpView;
  * Created by cample on 2018/6/21.
  */
 
-public abstract class MvpFragment<Presenter extends MvpPresenter> extends LazyFrament implements MvpView
+public abstract class MvpFragment<Presenter extends MvpPresenter> extends LazyFragment implements MvpView
 {
     protected Presenter p;
     protected Context mContext;
     private MvpView viewDelegate;
 
-    @Override
-    protected void onCreateViewLazy(Bundle savedInstanceState) {
-        super.onCreateViewLazy(savedInstanceState);
-        mContext=getContext();
-        if(applyContent()!=0) {
-            setContentView(applyContent());
-        }
-        //设置View代理实现 [用户自由设置]
-        viewDelegate=applyViewDelegate();
-        //设置Presenter [用户自由设置]
-        p=createPresenter();
-    }
-
-    public abstract int applyContent();
+//    @Override
+//    protected void onCreateViewLazy(Bundle savedInstanceState) {
+//        super.onCreateViewLazy(savedInstanceState);
+//
+//    }
+//    public abstract int applyContent();
     public abstract Presenter createPresenter();
     protected MvpView applyViewDelegate()
     {
         return null;
     }
     @Override
-    protected void onDestroyViewLazy() {
-        super.onDestroyViewLazy();
+    public void onDestroyView() {
+        super.onDestroyView();
         if (viewDelegate!=null)
             viewDelegate.onDetach();
         if(p!=null)
@@ -49,10 +42,17 @@ public abstract class MvpFragment<Presenter extends MvpPresenter> extends LazyFr
         mContext=null;
     }
 
+
     @Override
-    protected void onResumeLazy() {
-        super.onResumeLazy();
+    public void initViews(View view, Bundle savedInstanceState) {
+        mContext=getContext();
+        //设置View代理实现 [用户自由设置]
+        viewDelegate=applyViewDelegate();
+        //设置Presenter [用户自由设置]
+        p=createPresenter();
     }
+
+
 
     @Override
     public void showTip( String msg) {

@@ -1,15 +1,17 @@
 package com.plugin.foundation.library.mvp.activity;
 
 
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.plugin.foundation.library.mvp.presenter.MvpPresenter;
 import com.plugin.foundation.library.mvp.view.MvpView;
-import com.plugin.foundation.library.mvp.view.delegate.ButterKnifeViewDelegateImp;
+import com.plugin.foundation.library.mvp.view.delegate.DataBindingViewDelegateImp;
 import com.plugin.foundation.library.mvp.view.delegate.DefaultViewDelegateImp;
 
-public abstract class BaseMvpActivity<Presenter extends MvpPresenter> extends MvpActivity<Presenter> {
+public abstract class BaseBindingMvpActivity<Presenter extends MvpPresenter,Bing extends ViewDataBinding> extends MvpActivity<Presenter> {
+    protected Bing bing;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +21,8 @@ public abstract class BaseMvpActivity<Presenter extends MvpPresenter> extends Mv
 
     @Override
     protected MvpView applyViewDelegate() {
-        return new ButterKnifeViewDelegateImp(this,contentView);
+        DataBindingViewDelegateImp<Bing> mvpView=new DataBindingViewDelegateImp<Bing>(this,contentView);
+        bing=mvpView.getBinding();
+        return mvpView;
     }
 }
