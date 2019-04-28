@@ -72,7 +72,7 @@ public class AFragment extends BaseBingingMvpFragment<MyPresenter,Fragment01Bind
 
         ImageLoaderProxy.init(new GlideImageLoaderAPI());
 
-        ImageLoaderProxy.getInstance().display(mContext,"https://imgsa.baidu.com/baike/pic/item/bba1cd11728b47107d2e3d94cdcec3fdfc032361.jpg",R.mipmap.ic_launcher,new CircleCorner(),bing.image);
+        ImageLoaderProxy.getInstance().display(mContext,"https://imgsa.baidu.com/baike/pic/item/bba1cd11728b47107d2e3d94cdcec3fdfc032361.jpg",R.mipmap.ic_launcher,null,bing.image);
         ImageLoaderProxy.getInstance().display(mContext,"https://imgsa.baidu.com/baike/pic/item/bba1cd11728b47107d2e3d94cdcec3fdfc032361.jpg",R.mipmap.ic_launcher,new RectCorner(mContext,10,false,false,false,false),bing.image1);
         ImageLoaderProxy.getInstance().display(mContext,"https://imgsa.baidu.com/baike/pic/item/bba1cd11728b47107d2e3d94cdcec3fdfc032361.jpg",R.mipmap.ic_launcher,new RectCorner(mContext,10,true,true,false,false),bing.image2);
 

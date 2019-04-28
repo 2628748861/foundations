@@ -30,17 +30,32 @@ public class GlideImageLoaderAPI implements ImageLoaderAPI<Transformation<Bitmap
 {
     @Override
     public void display(Context context, String url, int placeHolder, CornerShape<Transformation<Bitmap>> shape, ImageView imageView) {
-        Glide.with(context).load(url).placeholder(placeHolder).transform(shape.getShape()).into(imageView);
+        RequestBuilder<Drawable> requestBuilder=Glide.with(context).load(url).placeholder(placeHolder);
+        if(shape!=null)
+        {
+            requestBuilder.transform(shape.getShape());
+        }
+        requestBuilder.into(imageView);
     }
 
     @Override
     public void display(Context context, Integer drawableResId, int placeHolder, CornerShape<Transformation<Bitmap>> shape, ImageView imageView) {
-        Glide.with(context).load(drawableResId).placeholder(placeHolder).transform(shape.getShape()).into(imageView);
+        RequestBuilder<Drawable> requestBuilder=Glide.with(context).load(drawableResId).placeholder(placeHolder);
+        if(shape!=null)
+        {
+            requestBuilder.transform(shape.getShape());
+        }
+        requestBuilder.into(imageView);
     }
 
     @Override
     public void display(Context context, File file, int placeHolder, CornerShape<Transformation<Bitmap>> shape, ImageView imageView) {
-        Glide.with(context).load(file).placeholder(placeHolder).transform(shape.getShape()).into(imageView);
+        RequestBuilder<Drawable> requestBuilder=Glide.with(context).load(file).placeholder(placeHolder);
+        if(shape!=null)
+        {
+            requestBuilder.transform(shape.getShape());
+        }
+        requestBuilder.into(imageView);
     }
     @Override
     public long getCacheSize(Context context) {
