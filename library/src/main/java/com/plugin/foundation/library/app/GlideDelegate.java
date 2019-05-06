@@ -3,7 +3,7 @@ package com.plugin.foundation.library.app;
 import android.content.Context;
 import android.content.res.Configuration;
 
-import com.plugin.foundation.library.image.GlideImageLoaderAPI;
+import com.plugin.foundation.library.image.glide.GlideImageLoaderAPI;
 import com.plugin.foundation.library.image.ImageLoaderProxy;
 
 public class GlideDelegate implements IApplifeCycle {

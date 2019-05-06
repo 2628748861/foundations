@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.bumptech.glide.load.Transformation;
-import com.plugin.foundation.library.image.CornerTransform;
+import com.plugin.foundation.library.image.glide.GlideCornerTransform;
 
 /**
  * 圆角矩形
@@ -32,6 +32,6 @@ public class RectCorner extends CornerShape<Transformation<Bitmap>> {
 
     @Override
     public Transformation<Bitmap> getShape() {
-        return new CornerTransform(mContext,radius).exceptCorner(leftTop,rightTop,leftBottom,rightBottom);
+        return new GlideCornerTransform(mContext,radius).exceptCorner(leftTop,rightTop,leftBottom,rightBottom);
     }
 }

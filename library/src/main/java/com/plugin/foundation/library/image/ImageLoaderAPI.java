@@ -3,34 +3,27 @@ package com.plugin.foundation.library.image;
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.plugin.foundation.library.image.shape.CornerShape;
-
-import java.io.File;
+import com.plugin.foundation.library.image.args.Args;
 
 /**
- * Created by cample on 2018/3/21.
+ * @param <Transform> 转换器:用于图片的形状转变
+ * @param <Transaction> 图像过渡:用于图像展现的过渡方式,例如:淡入淡出,渐变...
+ * @param <Listener> 监听器:用于对图片加载进行监听
  */
+public interface ImageLoaderAPI<Transform,Transaction,Listener> {
 
-public interface ImageLoaderAPI<T> {
-
-    /**加载网络图片
-     * @param url
+    /**加载普通图片
+     * @param args
      * @param imageView
      */
-    void display(Context context, String url, int placeHolder, CornerShape<T> shape, ImageView imageView);
+    void display(Context context, Args<Transform,Transaction,Listener> args, ImageView imageView);
 
-    /**加载本地资源图片
+    /**加载Gif图片
      * @param context
-     * @param drawableResId
+     * @param args
      * @param imageView
      */
-    void display(Context context, Integer drawableResId,int placeHolder,CornerShape<T> shape, ImageView imageView);
-
-    /**加载本地图片
-     * @param file
-     * @param imageView
-     */
-    void display(Context context, File file, int placeHolder, CornerShape<T> shape, ImageView imageView);
+    void displayGif(Context context,Args args,ImageView imageView);
 
     /**获取缓存大小
      * @param context

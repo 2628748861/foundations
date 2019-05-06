@@ -1,4 +1,4 @@
-package com.plugin.foundation.library.image;
+package com.plugin.foundation.library.image.glide;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,7 +17,10 @@ import com.bumptech.glide.load.resource.bitmap.BitmapResource;
 
 import java.security.MessageDigest;
 
-public class CornerTransform implements Transformation<Bitmap> {
+/**
+ * Glide实现的形状转换
+ */
+public class GlideCornerTransform implements Transformation<Bitmap> {
  
     private BitmapPool mBitmapPool;
  
@@ -33,7 +36,7 @@ public class CornerTransform implements Transformation<Bitmap> {
      * @param leftBottom
      * @param rightBottom
      */
-    public CornerTransform exceptCorner(boolean leftTop, boolean rightTop, boolean leftBottom, boolean rightBottom) {
+    public GlideCornerTransform exceptCorner(boolean leftTop, boolean rightTop, boolean leftBottom, boolean rightBottom) {
         this.exceptLeftTop = leftTop;
         this.exceptRightTop = rightTop;
         this.exceptLeftBottom = leftBottom;
@@ -41,7 +44,7 @@ public class CornerTransform implements Transformation<Bitmap> {
         return this;
     }
  
-    public CornerTransform(Context context, float radius) {
+    public GlideCornerTransform(Context context, float radius) {
         this.mBitmapPool = Glide.get(context).getBitmapPool();
         this.radius = radius;
     }
