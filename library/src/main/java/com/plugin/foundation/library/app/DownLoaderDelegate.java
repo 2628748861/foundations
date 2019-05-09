@@ -27,8 +27,7 @@ public class DownLoaderDelegate implements IApplifeCycle
 
     @Override
     public void onCreate() {
-        FileDownloader.setupOnApplicationOnCreate(application);
-        DownloadProxy.init(new FileDownLoaderImp());
+        DownloadProxy.init(new FileDownLoaderImp(application));
     }
 
     @Override

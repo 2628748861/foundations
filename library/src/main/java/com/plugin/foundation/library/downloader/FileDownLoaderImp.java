@@ -1,5 +1,6 @@
 package com.plugin.foundation.library.downloader;
 
+import android.app.Application;
 import android.os.Environment;
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadListener;
@@ -18,8 +19,9 @@ public class FileDownLoaderImp implements IDownLoad {
      * 文件下载的临时目录(每次创建时清空)
      */
     private File tempDirectory;
-    public FileDownLoaderImp()
+    public FileDownLoaderImp(Application application)
     {
+        FileDownloader.setupOnApplicationOnCreate(application);
         tempDirectory=new File(Environment.getExternalStorageDirectory(),"/temp");
         if(tempDirectory.exists())
             tempDirectory.delete();

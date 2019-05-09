@@ -137,6 +137,8 @@ public class AFragment extends BaseBingingMvpFragment<MyPresenter,Fragment01Bind
 
         //ImageLoaderProxy.getInstance().display(mContext,"https://imgsa.baidu.com/baike/pic/item/bba1cd11728b47107d2e3d94cdcec3fdfc032361.jpg",R.drawable.ic_placeholder,null,bing.image);
 
+
+
         ImageLoaderProxy.getInstance().display(mContext,new GlideArgsBuilder().uri(Uri.parse("file:///android_asset/ic_placeholder.png")).placeHolder(R.drawable.ic_placeholder).error(R.drawable.ic_placeholder).build(),bing.image);
         ImageLoaderProxy.getInstance().display(mContext,args,bing.image1);
         ImageLoaderProxy.getInstance().display(mContext,new GlideArgsBuilder().uri(Uri.parse("https://fc-feed.cdn.bcebos.com/0/pic/fcdb8ef09079db6ac531a811c43558e4.png")).override(200,200)
