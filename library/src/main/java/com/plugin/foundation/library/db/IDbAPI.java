@@ -1,4 +1,6 @@
 package com.plugin.foundation.library.db;
+import org.greenrobot.greendao.AbstractDao;
+
 import java.util.List;
 
 /**
@@ -79,5 +81,8 @@ public interface IDbAPI
      * @return
      */
     <T> List<T> customQuery(Class<T> t, String where, String... selectionArg);
+
+
+    <T> AbstractDao<T, String> getDao(Class<?> entity);
 
 }

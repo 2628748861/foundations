@@ -1,4 +1,6 @@
 package com.plugin.foundation.library.db;
+import org.greenrobot.greendao.AbstractDao;
+
 import java.util.List;
 
 /**
@@ -79,6 +81,11 @@ public final class DbProxy implements IDbAPI {
     @Override
     public <T> List<T> customQuery(Class<T> t, String where, String... selectionArg) {
         return iDbAPI.customQuery(t, where, selectionArg);
+    }
+
+    @Override
+    public <T> AbstractDao<T, String> getDao(Class<?> entity) {
+        return iDbAPI.getDao(entity);
     }
 
     private static class IDBProxyHolder
