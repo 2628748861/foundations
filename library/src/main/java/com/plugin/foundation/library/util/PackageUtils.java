@@ -1,9 +1,13 @@
 package com.plugin.foundation.library.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+
+import java.util.List;
 
 public class PackageUtils {
 
@@ -97,5 +101,40 @@ public class PackageUtils {
         }
         return value;
     }
+
+
+    /**安装apk
+     * @param mContext
+     * @param uri
+     */
+    public static void install(Context mContext,Uri uri)
+    {
+        Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setData(uri);
+        mContext.startActivity(intent);
+    }
+
+    /**apk是否安装
+     * @param context
+     * @param pkgName
+     * @return
+     */
+    public static boolean isAppInstalled( Context context, String pkgName) {
+        if (pkgName== null || pkgName.isEmpty()) {
+            return false;
+        }
+        final PackageManager packageManager = context.getPackageManager();
+        List<PackageInfo> info = packageManager.getInstalledPackages(0);
+        if(info == null || info.isEmpty())
+            return false;
+        for ( int i = 0; i < info.size(); i++ ) {
+            if(pkgName.equals(info.get(i).packageName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }
