@@ -75,7 +75,7 @@ public class SysInfoUtil {
         return ret;
     }
 
-    /**服务是否存在
+    /**指定包下是否有服务存在
      * @param context
      * @param packageName
      * @return
@@ -98,6 +98,31 @@ public class SysInfoUtil {
         }
         return isRunning;
     }
+
+    /**指定服务是否已经存在
+     * @param context
+     * @param serviceName
+     * @return
+     */
+    public static final boolean isServiceExist(Context context,String serviceName) {
+        boolean isRunning = false;
+        ActivityManager activityManager = (ActivityManager)
+                context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningServiceInfo> serviceList
+                = activityManager.getRunningServices(1000);
+        if (serviceList.size() < 1) {
+            return false;
+        }
+        for (int i = 0; i < serviceList.size(); i++) {
+            String runningClassName = serviceList.get(i).service.getClassName();
+            if (runningClassName.equals(serviceName)) {
+                isRunning = true;
+                break;
+            }
+        }
+        return isRunning;
+    }
+
 
 
 
