@@ -80,7 +80,7 @@ public class SysInfoUtil {
      * @param packageName
      * @return
      */
-    public static final boolean isServiceRuning(Context context,String packageName) {
+    public static final boolean hasServiceRuning(Context context,String packageName) {
         boolean isRunning = false;
         ActivityManager activityManager = (ActivityManager)
                 context.getSystemService(Context.ACTIVITY_SERVICE);
@@ -104,7 +104,7 @@ public class SysInfoUtil {
      * @param serviceName
      * @return
      */
-    public static final boolean isServiceExist(Context context,String serviceName) {
+    public static final boolean isServiceRuning(Context context,String serviceName) {
         boolean isRunning = false;
         ActivityManager activityManager = (ActivityManager)
                 context.getSystemService(Context.ACTIVITY_SERVICE);
