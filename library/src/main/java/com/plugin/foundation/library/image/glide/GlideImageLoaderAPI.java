@@ -33,6 +33,7 @@ public class GlideImageLoaderAPI implements ImageLoaderAPI<Transformation<Bitmap
                 .load(args.getUri())
                 .placeholder(args.getPlaceHolder())
                 .error(args.getError())
+                .skipMemoryCache(false)
                 .thumbnail(args.getThumbnail());
         if(args.getWidth()!=0&&args.getHeight()!=0)
             requestBuilder.override(args.getWidth(),args.getHeight());
