@@ -8,7 +8,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.engine.Resource;
@@ -23,13 +23,13 @@ import java.security.MessageDigest;
  * Glide实现的形状转换
  */
 public class GlideCornerTransform implements Transformation<Bitmap> {
- 
+
     private BitmapPool mBitmapPool;
- 
+
     private float radius;
- 
+
     private boolean exceptLeftTop, exceptRightTop, exceptLeftBottom, exceptRightBotoom;
- 
+
     /**
      * 除了那几个角不需要圆角的
      *
@@ -45,12 +45,12 @@ public class GlideCornerTransform implements Transformation<Bitmap> {
         this.exceptRightBotoom = rightBottom;
         return this;
     }
- 
+
     public GlideCornerTransform(Context context, float radius) {
         this.mBitmapPool = Glide.get(context).getBitmapPool();
         this.radius = radius;
     }
- 
+
     public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) {
         Bitmap source =  resource.get();
         int finalWidth, finalHeight;
@@ -85,14 +85,14 @@ public class GlideCornerTransform implements Transformation<Bitmap> {
             finalHeight = source.getHeight();
             finalWidth = finalHeight;
         }
- 
+
         //修正圆角
         this.radius *= (float) finalHeight / (float) outHeight;
         Bitmap outBitmap = this.mBitmapPool.get(finalWidth, finalHeight, Bitmap.Config.ARGB_8888);
         if (outBitmap == null) {
             outBitmap = Bitmap.createBitmap(finalWidth, finalHeight, Bitmap.Config.ARGB_8888);
         }
- 
+
         Canvas canvas = new Canvas(outBitmap);
         Paint paint = new Paint();
         //关联画笔绘制的原图bitmap
@@ -105,13 +105,13 @@ public class GlideCornerTransform implements Transformation<Bitmap> {
             matrix.setTranslate((float) (-width), (float) (-height));
             shader.setLocalMatrix(matrix);
         }
- 
+
         paint.setShader(shader);
         paint.setAntiAlias(true);
         RectF rectF = new RectF(0.0F, 0.0F, (float) canvas.getWidth(), (float) canvas.getHeight());
         //先绘制圆角矩形
         canvas.drawRoundRect(rectF, this.radius, this.radius, paint);
- 
+
         if (exceptLeftTop) {
             //左上角不为圆角
             canvas.drawRect(0, 0, radius, radius, paint);
@@ -120,17 +120,17 @@ public class GlideCornerTransform implements Transformation<Bitmap> {
             //右上角不为圆角
            canvas.drawRect(canvas.getWidth() - radius, 0, canvas.getWidth(), radius, paint);
         }
- 
+
         if (exceptLeftBottom) {
             //左下角不为圆角
             canvas.drawRect(0, canvas.getHeight() - radius, radius, canvas.getHeight(), paint);
         }
- 
+
         if (exceptRightBotoom) {
             //右下角不为圆角
             canvas.drawRect(canvas.getWidth() - radius, canvas.getHeight() - radius, canvas.getWidth(), canvas.getHeight(), paint);
         }
- 
+
         return BitmapResource.obtain(outBitmap, this.mBitmapPool);
     }
 

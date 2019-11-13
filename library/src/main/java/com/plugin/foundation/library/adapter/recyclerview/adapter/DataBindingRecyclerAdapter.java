@@ -1,7 +1,7 @@
 package com.plugin.foundation.library.adapter.recyclerview.adapter;
 
 import android.content.Context;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.view.View;
 import com.plugin.foundation.library.adapter.recyclerview.viewholder.DataBindingViewHolder;
 import java.util.List;

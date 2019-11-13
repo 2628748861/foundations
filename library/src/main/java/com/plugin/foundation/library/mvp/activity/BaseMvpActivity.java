@@ -2,12 +2,11 @@ package com.plugin.foundation.library.mvp.activity;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.plugin.foundation.library.mvp.presenter.MvpPresenter;
 import com.plugin.foundation.library.mvp.view.MvpView;
 import com.plugin.foundation.library.mvp.view.delegate.ButterKnifeViewDelegateImp;
-import com.plugin.foundation.library.mvp.view.delegate.DefaultViewDelegateImp;
 
 public abstract class BaseMvpActivity<Presenter extends MvpPresenter> extends MvpActivity<Presenter> {
     @Override

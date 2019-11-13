@@ -1,11 +1,8 @@
 package com.plugin.foundation.library.mvp.view.delegate;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import android.view.View;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class DataBindingViewDelegateImp<Bing extends ViewDataBinding> extends DefaultViewDelegateImp {
     private Bing binding;

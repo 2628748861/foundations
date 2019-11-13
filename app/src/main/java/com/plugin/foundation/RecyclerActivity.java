@@ -1,9 +1,9 @@
 package com.plugin.foundation;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.plugin.foundation.library.adapter.recyclerview.adapter.BaseRecyclerAdapter;
 import com.plugin.foundation.library.mvp.activity.BaseMvpActivity;

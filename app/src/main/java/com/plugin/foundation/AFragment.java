@@ -1,19 +1,13 @@
 package com.plugin.foundation;
 
-import android.content.ContentResolver;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.annotation.Nullable;
-import android.util.Log;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
@@ -27,8 +21,6 @@ import com.plugin.foundation.library.image.ImageLoaderProxy;
 import com.plugin.foundation.library.image.shape.RectCorner;
 import com.plugin.foundation.library.mvp.fragment.BaseBingingMvpFragment;
 import com.plugin.foundation.library.util.LogUtils;
-
-import java.io.File;
 
 import butterknife.BindView;
 

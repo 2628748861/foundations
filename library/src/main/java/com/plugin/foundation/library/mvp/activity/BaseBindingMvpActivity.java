@@ -1,14 +1,13 @@
 package com.plugin.foundation.library.mvp.activity;
 
 
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.plugin.foundation.library.mvp.presenter.MvpPresenter;
 import com.plugin.foundation.library.mvp.view.MvpView;
 import com.plugin.foundation.library.mvp.view.delegate.DataBindingViewDelegateImp;
-import com.plugin.foundation.library.mvp.view.delegate.DefaultViewDelegateImp;
 
 public abstract class BaseBindingMvpActivity<Presenter extends MvpPresenter,Bing extends ViewDataBinding> extends MvpActivity<Presenter> {
     protected Bing bing;
