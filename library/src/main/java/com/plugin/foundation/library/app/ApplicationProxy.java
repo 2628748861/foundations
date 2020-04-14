@@ -22,6 +22,7 @@ public abstract class ApplicationProxy extends Application
                 .addApplifeCycle(provideHttpConifg())
                 .addApplifeCycle(provideImageLoaderConifg())
                 .addApplifeCycle(provideDatabaseConifg())
+                .addApplifeCycle(providePermissionConifg())
                 .addApplifeCycles(applifeCycles);
         manager=builder.build();
         manager.attachBaseContext(base);
@@ -64,6 +65,10 @@ public abstract class ApplicationProxy extends Application
     protected IApplifeCycle provideImageLoaderConifg()
     {
         return new GlideDelegate();
+    }
+    protected IApplifeCycle providePermissionConifg()
+    {
+        return new PermissionDelegate();
     }
 
 

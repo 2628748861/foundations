@@ -2,6 +2,8 @@ package com.plugin.foundation.library.permission;
 
 import android.app.Activity;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import io.reactivex.Observable;
 
 /**
@@ -9,5 +11,6 @@ import io.reactivex.Observable;
  */
 
 public interface IPermissionAPI {
-    Observable<Boolean> request(Activity context, String... permissions);
+    Observable<Boolean> request(FragmentActivity context, String... permissions);
+    Observable<Boolean> request(Fragment context, String... permissions);
 }

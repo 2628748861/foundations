@@ -1,6 +1,8 @@
 package com.plugin.foundation.library.permission;
 
 import android.app.Activity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import io.reactivex.Observable;
 
 /**
@@ -19,12 +21,19 @@ public class PermissionAPIProxy implements IPermissionAPI {
     {
        return IPermissionProxyHolder.instance;
     }
+
     static class IPermissionProxyHolder
     {
         private static PermissionAPIProxy instance = new PermissionAPIProxy();
     }
+
     @Override
-    public Observable<Boolean> request(Activity context, String... permissions) {
+    public Observable<Boolean> request(FragmentActivity context, String... permissions) {
+        return iPermission.request(context,permissions);
+    }
+
+    @Override
+    public Observable<Boolean> request(Fragment context, String... permissions) {
         return iPermission.request(context,permissions);
     }
 }
