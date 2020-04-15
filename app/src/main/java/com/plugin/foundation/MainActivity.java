@@ -1,32 +1,22 @@
 package com.plugin.foundation;
 
-import android.os.Environment;
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.plugin.foundation.library.diskcache.DiskLrucaheImp;
-import com.plugin.foundation.library.diskcache.IDiskCache;
-import com.plugin.foundation.library.downloader.DownloadProxy;
-import com.plugin.foundation.library.downloader.FileDownLoaderImp;
-import com.plugin.foundation.library.mvp.activity.BaseMvpActivity;
 import com.plugin.foundation.library.mvp.presenter.MvpPresenter;
-import com.plugin.foundation.library.util.DesUtil;
 import com.plugin.foundation.library.util.Md5Util;
 
-import java.io.File;
 
-import butterknife.BindView;
+public class MainActivity extends Activity {
 
-public class MainActivity extends BaseMvpActivity {
-
-    @BindView(R.id.title_template)
-    TextView title_template;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_main);
 
 
 
@@ -65,13 +55,4 @@ public class MainActivity extends BaseMvpActivity {
 
     }
 
-    @Override
-    public int applyContent() {
-        return R.layout.activity_main;
-    }
-
-    @Override
-    public MvpPresenter createPresenter() {
-        return null;
-    }
 }

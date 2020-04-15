@@ -22,18 +22,9 @@ import com.plugin.foundation.library.image.shape.RectCorner;
 import com.plugin.foundation.library.mvp.fragment.BaseBingingMvpFragment;
 import com.plugin.foundation.library.util.LogUtils;
 
-import butterknife.BindView;
 
 public class AFragment extends BaseBingingMvpFragment<MyPresenter,Fragment01Binding> {
 
-    @BindView(R.id.tv)
-    TextView tv;
-    @BindView(R.id.image)
-    ImageView  image;
-    @BindView(R.id.image1)
-    ImageView  image1;
-    @BindView(R.id.image2)
-    ImageView  image2;
 
 
 //    @Override

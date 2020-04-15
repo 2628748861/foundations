@@ -3,7 +3,6 @@ package com.plugin.foundation.library.adapter.recyclerview.adapter;
 import android.content.Context;
 import android.view.View;
 
-import com.plugin.foundation.library.adapter.recyclerview.viewholder.ButterKnifeViewHolder;
 import com.plugin.foundation.library.adapter.recyclerview.viewholder.SimpleViewHolder;
 
 import java.util.List;

@@ -42,9 +42,6 @@ dependencies {
     //多baseUrl切换
     api 'me.jessyan:retrofit-url-manager:1.4.0'
 
-    //ButterKnife
-    api 'com.jakewharton:butterknife:8.4.0'
-
     //占位布局
     api 'com.github.2628748861:placeHolderLayout:1.0.1'
 
@@ -52,9 +49,6 @@ dependencies {
     api "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-7"
 
     api 'androidx.recyclerview:recyclerview:1.0.0-beta01'
-
-    api 'com.just.agentweb:agentweb:4.0.2'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 
     api 'com.liulishuo.filedownloader:library:1.7.6'
 
