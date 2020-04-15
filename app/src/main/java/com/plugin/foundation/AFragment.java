@@ -79,7 +79,7 @@ public class AFragment extends BaseBingingMvpFragment<MyPresenter,Fragment01Bind
         Args args=new GlideArgsBuilder()
                 .uri(Uri.parse("https://imgsa.baidu.com/baike/pic/item/bba1cd11728b47107d2e3d94cdcec3fdfc032361.jpg"))
                 .placeHolder(R.drawable.ic_placeholder)
-                .error(R.drawable.ic_back)
+                .error(R.drawable.ic_placeholder)
                 .shape(new RectCorner(getActivity(),5,false,false,true,false))
                 .transaction(BitmapTransitionOptions.withCrossFade())
                 .listener(new RequestListener<Bitmap>() {
